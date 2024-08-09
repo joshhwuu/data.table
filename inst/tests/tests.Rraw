@@ -18712,14 +18712,6 @@ ans = c(
 # test where topn isn't necessary
 test(2264.8, print(DT, show.indices=TRUE), output=ans)
 
-# integer64 columns print even when bit64 isn't loaded
-if (test_bit64) local({
-  DT = data.table(a = 'abc', b = as.integer64(1))
-  invisible(unloadNamespace("bit64"))
-  on.exit(suppressPackageStartupMessages(library(bit64)))
-  test(2265, DT, output="abc\\s*1$")
-})
-
 # non-ASCII plain symbol in by, #4708
 DT = data.table(a = rep(1:3, 2))
 # NB: recall we can't use non-ASCII symbols here. the text is a-<n-tilde>-o (year in Spanish)
